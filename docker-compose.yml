@@ -1,0 +1,28 @@
+#versi docker compose
+version: "3.7"
+#list service
+services:
+  #service nodejs
+  item-app: 
+    #image yang digunakan dari docker hub
+    image: 2bagus/item-app:v1
+    #map port host ke 80
+    ports:
+      - 80:8080
+    #otomatis running saat berhenti
+    restart: always
+    #akan di run apabila container item-db running
+    depends_on:
+      - "item-db"
+  #service databse
+  item-db:
+    #image yang digunakan 
+    image: mongo:3
+    #otomatis running saat berhenti
+    restart: always
+    #mounting volume
+    volumes:
+      - app-db:/data/db
+#volume yang digunakan
+volumes:
+  app-db:

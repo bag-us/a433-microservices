@@ -6,9 +6,8 @@ docker build -t item-app:v1 .
 #baris baru
 echo -e "\n";
 
-#list image
+#Melihat Daftar image local
 docker images
-echo -e "\n";
 
 #ubah nama image
 docker tag item-app:v1 2bagus/submission:v1

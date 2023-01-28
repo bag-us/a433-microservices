@@ -1,0 +1,24 @@
+apiVersion: apps/v1     # API Version yang digunakan
+kind: Deployment        # Membuat object jenis Deployment
+metadata:               # menambahkan metadata
+  name: karsajobs-ui    # menambahkan metadata nama
+  labels:
+    app: karsajobs-ui   # menambahkan metadata label
+spec:                   # menambahkan spesifikasi
+  replicas: 1           # replika satu pod
+  selector:             # selector dengan matchLabels
+    matchLabels: 
+      app: karsajobs-ui #samakan dengan label
+  template:
+    metadata:
+      labels:
+        app: karsajobs-ui #samakan dengan label
+    spec:                 # menambahkan spesifikasi container
+      containers:
+        - name: karsajobs-ui  # nama container
+          image: 2bagus/karsajobs-ui:latest  #ambil image docker hub
+          ports:
+            - containerPort: 8000 #gunakan port
+          env:       # environment variable ke database
+            - name: VUE_APP_BACKEND
+              value: http://192.168.65.4:30001

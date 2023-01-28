@@ -1,0 +1,14 @@
+apiVersion: v1        # API Version
+kind: Service         # Menambahkan object Service
+metadata:             # menambahkan metadata 
+  name: karsajobs-ui  # nama
+  labels:
+    app: karsajobs-ui # label
+spec: # Ekspose port dengan tipe NodePort
+  type: NodePort
+  selector:
+    app: karsajobs-ui 
+  ports:
+    - port: 8000    
+      targetPort: 8000 # container
+      nodePort: 30002  # host

@@ -1,0 +1,8 @@
+apiVersion: v1  # API Version yang digunakan
+kind: ConfigMap # Membuat object jenis ConfigMap
+metadata:       # menambahkan metadata
+  name: mongo-config  # nama
+data:           #data config
+  mongo.conf: |
+    storage:
+      dbPath: /data/db

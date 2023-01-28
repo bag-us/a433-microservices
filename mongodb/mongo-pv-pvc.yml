@@ -1,0 +1,29 @@
+apiVersion: v1              # API Version yang digunakan
+kind: PersistentVolume      # Membuat object jenis PersistentVolume
+metadata:
+  name: mongo-pv            # menambahkan metadata nama
+  labels:
+    type: local             # menambahkan label
+spec:
+  accessModes:
+    - ReadWriteOnce         # bisa read and write sekali
+  capacity:
+    storage: 2Gi 	    # kapasitas di PersistentVolume
+  hostPath:		        # testing local
+    path: "/data/db"	    # path
+
+---
+
+apiVersion: v1                # API Version yang digunakan
+kind: PersistentVolumeClaim   # Membuat object jenis PersistentVolumeClaim
+metadata:
+  name: mongo-pv-claim        # menambahkan metadata nama
+  labels:
+    app: mongo                # menambahkan label
+spec:
+  accessModes:
+    - ReadWriteOnce           # bisa read and write
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 1Gi            # kapasitas volume di Pod

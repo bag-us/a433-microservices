@@ -1,0 +1,42 @@
+NAME                                                     READY   STATUS             RESTARTS          AGE
+pod/karsajobs-757976bc8d-4sh9g                           1/1     Running            0                 46m
+pod/karsajobs-ui-6687c5c946-tv59r                        1/1     Running            0                 25m
+pod/prometheus-alertmanager-0                            1/1     Running            2 (111m ago)      7h27m
+pod/prometheus-kube-state-metrics-5fdc4f6d6c-whsss       1/1     Running            3 (111m ago)      7h28m
+pod/prometheus-prometheus-node-exporter-rgqjr            0/1     CrashLoopBackOff   105 (2m50s ago)   7h27m
+pod/prometheus-prometheus-pushgateway-59d858554f-nwlvg   1/1     Running            2 (111m ago)      7h28m
+pod/prometheus-server-6d989bbd49-bln7r                   2/2     Running            4 (111m ago)      7h28m
+
+NAME                                          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+service/karsajobs                             NodePort    10.105.69.202    <none>        8080:30001/TCP   46m
+service/karsajobs-ui                          NodePort    10.99.47.183     <none>        8000:30002/TCP   26m
+service/kubernetes                            ClusterIP   10.96.0.1        <none>        443/TCP          52d
+service/mongo                                 ClusterIP   None             <none>        27017/TCP        60m
+service/prometheus-alertmanager               ClusterIP   10.110.45.159    <none>        9093/TCP         7h28m
+service/prometheus-alertmanager-headless      ClusterIP   None             <none>        9093/TCP         7h28m
+service/prometheus-kube-state-metrics         ClusterIP   10.107.227.129   <none>        8080/TCP         7h28m
+service/prometheus-prometheus-node-exporter   ClusterIP   10.99.33.52      <none>        9100/TCP         7h28m
+service/prometheus-prometheus-pushgateway     ClusterIP   10.108.159.143   <none>        9091/TCP         7h28m
+service/prometheus-server                     ClusterIP   10.110.195.122   <none>        80/TCP           7h28m
+service/prometheus-server-ext                 NodePort    10.109.5.37      <none>        80:30585/TCP     7h2m
+
+NAME                                                 DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+daemonset.apps/prometheus-prometheus-node-exporter   1         1         0       1            0           <none>          7h28m
+
+NAME                                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/karsajobs                           1/1     1            1           46m
+deployment.apps/karsajobs-ui                        1/1     1            1           25m
+deployment.apps/prometheus-kube-state-metrics       1/1     1            1           7h28m
+deployment.apps/prometheus-prometheus-pushgateway   1/1     1            1           7h28m
+deployment.apps/prometheus-server                   1/1     1            1           7h28m
+
+NAME                                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/karsajobs-757976bc8d                           1         1         1       46m
+replicaset.apps/karsajobs-ui-6687c5c946                        1         1         1       25m
+replicaset.apps/prometheus-kube-state-metrics-5fdc4f6d6c       1         1         1       7h28m
+replicaset.apps/prometheus-prometheus-pushgateway-59d858554f   1         1         1       7h28m
+replicaset.apps/prometheus-server-6d989bbd49                   1         1         1       7h28m
+
+NAME                                       READY   AGE
+statefulset.apps/mongo                     0/1     49m
+statefulset.apps/prometheus-alertmanager   1/1     7h28m

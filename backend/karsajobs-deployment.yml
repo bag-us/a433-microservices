@@ -1,0 +1,53 @@
+apiVersion: apps/v1  
+# API Version yang digunakan
+
+kind: Deployment     
+# Membuat object jenis Deployment
+metadata:            
+# menambahkan metadata
+  name: karsajobs    
+# menambahkan metadata nama
+  labels:
+    app: karsajobs   
+# menambahkan metadata label
+spec:                
+# menambahkan spesifikasi
+  replicas: 1        
+# replika satu pod
+  selector:          
+# selector dengan matchLabels
+    matchLabels: 
+      app: karsajobs 
+#samakan dengan label
+  template:
+    metadata:
+      labels:
+        app: karsajobs 
+#samakan dengan label
+    spec:            
+# menambahkan spesifikasi container
+      containers:
+        - name: karsajobs  
+# nama container
+          image: 2bagus/karsajobs:latest  
+#ambil image docker hub
+          ports:
+            - containerPort: 8080 
+#gunakan port
+          env:       
+# environment variable ke database
+            - name: APP_PORT
+              value: "8080"
+            - name: MONGO_HOST
+              value: "mongo"
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credential
+                  key: MONGO_ROOT_USERNAME
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credential
+                  key: MONGO_ROOT_PASSWORD
+
